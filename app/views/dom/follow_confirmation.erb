@@ -1,0 +1,10 @@
+<div id='followed-page' >
+  <%=raw @html %>
+</div>
+
+<%= form_for @followed_page, method: :post do |f| %>
+  <%= f.hidden_field :url %>
+  <%= f.hidden_field :original_content %>
+  <%= f.hidden_field :selector %>
+  <%= submit_tag %>
+<% end %>

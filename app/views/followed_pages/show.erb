@@ -1,0 +1,18 @@
+<H1>Followed Page</h1>
+
+<p>Following the page at <%= @followed_page.url %></p>
+
+<% if @followed_page.content_difference.empty? %>
+  <p>Status: Not changed</p>
+<% else %>
+  <p>Status: Changed!</p>
+<% end %>
+
+<p>Current view of the followed part</p>
+<div id='followed-page' >
+  <%=raw @html %>
+</div>
+
+<p>Followed content: <%= @followed_page.original_content %> </p>
+
+<p>Selector: <%= @followed_page.selector %> </p>

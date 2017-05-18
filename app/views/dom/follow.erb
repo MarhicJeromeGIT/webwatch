@@ -1,0 +1,12 @@
+<h1>URL: <%= @url %></h1>
+<br>
+
+<div id='followed-page' >
+  <%=raw @html %>
+</div>
+
+<%= form_tag( follow_confirmation_path, method: "get") do %>
+  <%= hidden_field_tag :selector, '' %>
+  <%= hidden_field_tag :url, @url %>
+  <%= submit_tag %>
+<% end %>

@@ -1,0 +1,8 @@
+<div id='followed-page' >
+  <%=raw Algo.new.html %>
+</div>
+
+<%= form_tag("/follow-confirmation", method: "get") do %>
+  <%= hidden_field_tag :selector, '' %>
+  <%= submit_tag %>
+<% end %>
