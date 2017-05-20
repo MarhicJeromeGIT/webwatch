@@ -1,10 +1,16 @@
 class DomController < ApplicationController
-  def follow
-    @url = 'lemonde.html' #'http://google.com/search?q=tenderlove'
-    nokogiri_doc = Algo.new(url: @url)
-    @html = nokogiri_doc.html
+  def welcome
   end
   
+  def follow
+    if params[:url].present?
+      @url = params[:url]
+      nokogiri_doc = Algo.new(url: @url)
+      @html = nokogiri_doc.html
+      @head = nokogiri_doc.header
+    end
+  end
+
   def follow_confirmation
     @url = params[:url]
     @selector = params[:selector]

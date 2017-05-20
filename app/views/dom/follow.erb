@@ -1,6 +1,11 @@
 <h1>URL: <%= @url %></h1>
 <br>
 
+<%= form_tag 'follow', method: :get do %>
+  <%= text_field_tag :url %>
+  <%= submit_tag 'ok' %>
+<% end %>
+
 <div id='followed-page' >
   <%=raw @html %>
 </div>

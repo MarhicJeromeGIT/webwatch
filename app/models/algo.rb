@@ -3,8 +3,10 @@ class Algo
   attr_accessor :url
   attr_accessor :doc
   
-  def initialize(attributes)
+  def initialize(attributes, web: true)
     @url = attributes[:url]
+    @url = 'http://' + @url if web && !url.starts_with?('http')
+    
     html = Rails.cache.fetch @url, expires_in: 1.minute do
       open(@url).read
     end
@@ -15,9 +17,9 @@ class Algo
     header = ''
     head = @doc.search 'head'
     head.children.each do |c|
-      if c.name == 'style'
+      #if c.name == 'style'
         header << c.to_s
-      end
+      #end
     end
     header
   end
@@ -29,7 +31,7 @@ class Algo
     body = @doc.search 'body'
     selected_part = body.search selector
     selected_part.search('a').each do |link|
-      link.name = 'span'
+      #link.name = 'span'
     end
     html += selected_part.to_s
     html
@@ -37,8 +39,6 @@ class Algo
 
   def html
     html = '<div id="body">'
-    
-    html += header
 
     body = @doc.search 'body'
     # Remove all the links
